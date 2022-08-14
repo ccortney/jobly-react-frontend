@@ -1,0 +1,8 @@
+.apply-button {
+    display: flex;
+    justify-content: right;
+    /* margin: auto;
+    width: 50%; */
+    /* display: "flex";
+    justifyContent: "flex-end" */
+}

@@ -9,22 +9,15 @@ import Tooltip from '@mui/material/Tooltip';
 const pages = ['companies', 'jobs'];
 const settings = ['signup', 'login'];
 const userSettings = [{route: "/", name: "Dashboard"}, {route: "/profile", name: "Edit Profile"}, {route: "/logout", name: "Logout"}]
-const user = {name: "Camilla"}
+const user = null
 
 const Navbar = () => {
 
-  const [anchorElNav, setAnchorElNav] = useState(null);
+
   const [anchorElUser, setAnchorElUser] = useState(null);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
   };
 
   const handleCloseUserMenu = () => {
@@ -56,10 +49,14 @@ const Navbar = () => {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                <Link style={{textDecoration: "none", color: "white"}} to={`/${page}`}>{page}</Link>
+                <Link 
+                    style={{textDecoration: "none", color: "white"}} 
+                    to={`/${page}`}
+                >
+                    {page}
+                </Link>
               </Button>
             ))}
           </Box>
@@ -107,7 +104,6 @@ const Navbar = () => {
             {settings.map((setting) => (
             <Button
                 key={setting}
-                onClick={handleCloseNavMenu}
                 sx={{ mr: 1, color: 'white', display: 'block' }}
             >
                 <Link style={{textDecoration: "none", color: "white"}} to={`/${setting}`}>{setting}</Link>

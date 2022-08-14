@@ -9,6 +9,9 @@ import Signup from "./Signup";
 import Navbar from "./Navbar";
 
 const AppRoutes = () => {
+
+
+
     return (
         <BrowserRouter>
             <Navbar/>
@@ -16,7 +19,7 @@ const AppRoutes = () => {
                 <Route path="/" element={<Homepage/>}/>
                 <Route path="/companies" element={<CompanyPage/>}/>
                 <Route path="/companies/:id" element={<CompanyDetails cantFind="/companies"/>}/>
-                <Route path="/jobs" element={<JobPage/>}/>
+                <Route path="/jobs" element={<JobPage />}/>
                 <Route path="/profile" element={<Profile/>}/>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/signup" element={<Signup/>}/>

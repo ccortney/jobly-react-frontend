@@ -1,5 +1,10 @@
 import { Grid, Typography } from "@mui/material";
 
+/**
+ * CompanyNotFound component for Jobly app
+ * Renders a page that states the company could not be found
+ */
+
 const CompanyNotFound = () => {
 
         return (

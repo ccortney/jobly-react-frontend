@@ -2,6 +2,15 @@ import {Paper, InputBase, Button, Box} from '@mui/material';
 import { useState } from 'react';
 import UndoIcon from '@mui/icons-material/Undo';
 
+/**
+ * SearchForm component for Jobly app
+ * Rendered on CompanyPage and JobPage
+ * Renders a form that allows user to search companies/jobs. 
+ * Clear resets the search bar to an empty string and renders the full Company/JobList
+ * 
+ * @props searchPhrase, completeSearch, clearSearch functions
+ */
+
 const SearchForm = ({searchPhrase, completeSearch, clearSearch}) => {
     
     const [formData, setFormData] = useState("");

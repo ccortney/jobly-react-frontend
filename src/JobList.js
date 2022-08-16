@@ -1,9 +1,16 @@
 import JobCard from "./JobCard.js";
 import {Grid} from "@mui/material"
 
+/**
+ * JobList component for Jobly app
+ * Renders a JobCard for every job in the state
+ * 
+ * @props jobs state, showCompany boolean, applyForJob function
+ */
+
 const JobList = ({jobs, showCompany, applyForJob}) => {
 
-    
+
     return (
             
             <Grid 

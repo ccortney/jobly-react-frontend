@@ -4,6 +4,14 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Visibility from '@mui/icons-material/Visibility';
 import { useNavigate } from "react-router-dom";
 
+/**
+ * Signup component for Jobly app
+ * Renders signup form 
+ * Redirects to homepage with welcome message when successfully logged in after signup
+ * 
+ * @props signup function
+ */
+
 const Signup = ({signup}) => {
     const navigate = useNavigate()
 

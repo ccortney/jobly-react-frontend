@@ -5,6 +5,16 @@ import Visibility from '@mui/icons-material/Visibility';
 import { useNavigate } from "react-router-dom";
 import UserContext from "./UserContext";
 
+/**
+ * Profile component for Jobly app
+ * Renders two forms. The first allows users to edit first/last name or email. 
+ * The second form allows users to change password. 
+ * 
+ * Redirects to homepage when either form is submitted
+ * 
+ * @props editProfile function
+ */
+
 const Profile = ({editProfile}) => {
     const navigate = useNavigate();
     const user = useContext(UserContext)
@@ -32,10 +42,6 @@ const Profile = ({editProfile}) => {
             email: formData.email || user.user.email,
             password: formData.password || user.user.email
         })
-        // setFormData({...INITIAL_STATE,         
-        //     firstName: '',
-        //     lastName: '',
-        //     email: '', })
         navigate('/')
 
     }
@@ -82,31 +88,6 @@ const Profile = ({editProfile}) => {
                         onChange={handleChange}
                     />
             </Grid>
-            {/* <Grid item >
-                <FormControl sx={{ m: 1, width: 300 }} variant="outlined">
-                        <InputLabel htmlFor="password">New Password</InputLabel>
-                        <OutlinedInput
-                        id="password"
-                        type={formData.showPassword ? 'text' : 'password'}
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        endAdornment={
-                            <InputAdornment position="end">
-                            <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={handleClickShowPassword}
-                                onMouseDown={handleMouseDownPassword}
-                                edge="end"
-                            >
-                            {formData.showPassword ? <VisibilityOff /> : <Visibility />}
-                            </IconButton>
-                            </InputAdornment>
-                        }
-                        label="Password"
-                        />
-                </FormControl>   
-            </Grid>         */}
             <Grid item>
                 <TextField
                     sx={{m: 1, width: 300}}

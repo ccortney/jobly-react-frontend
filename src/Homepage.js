@@ -3,6 +3,14 @@ import {useContext} from "react";
 import { Link } from "react-router-dom";
 import { Grid, Typography, Button, Box } from "@mui/material";
 
+/**
+ * Homepage component for Jobly app
+ * Renders the app name and description
+ * 
+ * If logged in, there will be a welcome back message. 
+ * If not, a signup and login button is rendered.
+ */
+
 const Homepage = () => {
     const user = useContext(UserContext);
 

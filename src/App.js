@@ -7,7 +7,17 @@ import UserContext from "./UserContext";
 import './App.css';
 import Navbar from "./Navbar";
 
-
+/**
+ * Jobly app components
+ * 
+ * token obtained from and stored in localStorage
+ * user state updated whenever token changes by calling decodeToken
+ * 
+ * user state provided to app with context provided UserContext
+ * signup, login, editProfile, and applyForJob functions provided to child routes
+ * logout function provided to NavBar
+ * @returns Navbar and AppRoutes components
+ */
 function App() {
 
   const [token, setToken] = useLocalStorage("token", null);

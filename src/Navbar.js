@@ -7,6 +7,15 @@ import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import UserContext from "./UserContext"
 
+/**
+ * Navbar component for Jobly app
+ * Renders links to homepage, companies, and jobs routes. 
+ * When logged in, a dropdown is rendered the links to edit profile and logout.
+ * When not logged in, links to login or signup is rendered
+ * 
+ * @props logout function
+ */
+
 
 const Navbar = ({logout}) => {
     const user = useContext(UserContext)

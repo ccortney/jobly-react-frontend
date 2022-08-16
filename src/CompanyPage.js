@@ -3,6 +3,15 @@ import JoblyApi from "./api.js";
 import CompanyCard from "./CompanyCard.js";
 import SearchForm from "./SearchForm.js";
 
+/**
+ * CompanyPage component for Jobly app
+ * Renders "loading" while the API call is being performed
+ * On mount, renders a CompanyCard for every company in the database
+ * 
+ * Search filters by company name, displaying a CompanyCard for each company returned
+ * Clear resets the search bar to an empty string and renders a CompanyCard for every company
+ */
+
 const CompanyPage = () => {
     const [companies, setCompanies] = useState([]);
     const [isLoading, setIsLoading] = useState({})

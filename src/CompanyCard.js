@@ -1,6 +1,14 @@
 import {Card, CardContent, Typography } from '@mui/material'
 import { Link } from 'react-router-dom';
 
+/**
+ * CompanyCard component for Jobly app
+ * Renders a card displaying the company name and description. 
+ * Card links to /companies/:handle route which renders CompanyDetail component
+ * 
+ * @props company object
+ */
+
 const CompanyCard = ({company}) => {
 
     return (

@@ -8,12 +8,21 @@ import Login from "./Login";
 import Signup from "./Signup";
 import CompanyNotFound from "./CompanyNotFound";
 
+/** 
+ * If token, user has access to all routes. Otherwise user has access
+ * to homepage, login, and signup
+ * 
+ * Redirects to homepage if page not found
+ *  
+ * @props login, signup, editProfile, and applyForJob functions; token 
+ * @returns Routes component for Jobly app
+ */
+
 const AppRoutes = ({login, signup, token, editProfile, applyForJob}) => {
     
     if (!token) {
         return (
             <Routes>
-                {console.log("not user routes")}
                 <Route path="/" element={<Homepage/>}/>
                 <Route path="/companies" element={<Navigate to="/"/>}/>
                 <Route path="/companies/:id" element={<Navigate to="/"/>}/>
@@ -39,7 +48,6 @@ const AppRoutes = ({login, signup, token, editProfile, applyForJob}) => {
                 <Route path="*" element={<Navigate to="/"/>}/>
             </Routes>
         )
-
     }
 }
 

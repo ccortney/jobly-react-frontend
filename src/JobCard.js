@@ -3,6 +3,14 @@ import "./JobCard.css";
 import { useState, useContext, useEffect } from 'react';
 import UserContext from './UserContext';
 
+/**
+ * JobCard component for Jobly app
+ * Renders a card displaying the job title, salary, equity and a button to apply.
+ * The rendered button disables when the user applys for the job.
+ * 
+ * @props job object, showCompany boolean, applyForJob function
+ */
+
 const JobCard = ({job, showCompany, applyForJob}) => {
     const user = useContext(UserContext);
     const [applied, setApplied] = useState()

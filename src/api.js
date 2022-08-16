@@ -50,13 +50,6 @@ static async getCompanies(name) {
     return res.companies;
 }
 
-/** Get all companies based on an optional name filter. */
-
-static async getJobs(title) {
-    let res = title ? await this.request(`jobs/`, {title}) : await this.request(`jobs/`,);
-    return res.jobs;
-}
-
 /** Get all jobs for given company */
 
 static async getJobs(title) {
@@ -64,11 +57,41 @@ static async getJobs(title) {
     return res.jobs;
 }
 
+/** Sign Up */
+
+static async signup(data) {
+    let res = await this.request('auth/register', data, "post")
+    return res.token
 }
 
-// for now, put token ("testuser" / "password" on class)
-JoblyApi.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
-    "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
-    "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
+/** Login */
+
+static async login(data) {
+    let res = await this.request('auth/token', data, "post")
+    return res.token
+}
+
+/** Edit Profile */
+
+static async editProfile(username, data) {
+  let res = await this.request(`users/${username}`, data, "patch")
+  return res.user
+}
+
+/** Get User from Token*/
+
+static async getUser(username) {
+    let res = await this.request(`users/${username}`)
+    return res.user
+}
+
+/** Apply for Job*/
+
+static async applyForJob(username, jobId) {
+  let res = await this.request(`users/${username}/jobs/${jobId}`, {}, "post")
+  return res.applied
+}
+
+}
 
 export default JoblyApi;

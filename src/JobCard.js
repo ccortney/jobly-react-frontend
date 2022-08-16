@@ -1,15 +1,29 @@
 import {Card, Typography, Button, CardActions, Grid} from '@mui/material';
-import "./JobCard.css"
+import "./JobCard.css";
+import { useState, useContext, useEffect } from 'react';
+import UserContext from './UserContext';
 
-const JobCard = ({job, showCompany}) => {
+const JobCard = ({job, showCompany, applyForJob}) => {
+    const user = useContext(UserContext);
+    const [applied, setApplied] = useState()
+
+    useEffect(() => {
+        if (user) {
+            if (user.applications.indexOf(job.id) !== -1) setApplied(true)
+            else setApplied(false)
+        }
+        
+    }, [user, job.id])
+
     if (!job.equity) {
         job.equity = "Unknown"
     }
 
-    const handleClick = (e) => {
-        e.preventDefault();
-        console.log("Applied!")
-    }
+    const applyButton = applied ? 
+        <Button variant="contained" className="apply-button" disabled>Applied</Button> :
+        <Button variant="contained" className="apply-button" onClick = {() => applyForJob(job.id)}>Apply</Button> 
+        
+
     return (
         <Card sx={{ my: 2, mx: 7}} variant="outlined">
                 <Typography variant="h6" >
@@ -28,7 +42,7 @@ const JobCard = ({job, showCompany}) => {
                 </Typography>
             <Grid container justifyContent = "flex-end">
                 <CardActions >
-                    <Button variant="contained" className="apply-button" onClick = {handleClick}>Apply</Button>
+                    {applyButton}
                 </CardActions>
             </Grid>
 

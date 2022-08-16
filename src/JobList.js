@@ -1,7 +1,9 @@
 import JobCard from "./JobCard.js";
 import {Grid} from "@mui/material"
 
-const JobList = ({jobs, showCompany}) => {
+const JobList = ({jobs, showCompany, applyForJob}) => {
+
+    
     return (
             
             <Grid 
@@ -11,7 +13,7 @@ const JobList = ({jobs, showCompany}) => {
                 rowSpacing={1} 
                 columnSpacing={{xs: 1, s: 2, md: 3}}>
                 {jobs.map(job => (<Grid item xs={6} key={job.id}>
-                   <JobCard key = {job.id} job={job} showCompany={showCompany}/> 
+                   <JobCard key = {job.id} job={job} showCompany={showCompany} applyForJob={applyForJob}/> 
                 </Grid>
                 ))}
                 

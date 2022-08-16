@@ -3,7 +3,7 @@ import JobList from "./JobList.js";
 import JoblyApi from "./api.js";
 import SearchForm from "./SearchForm.js";
 
-const JobPage = () => {
+const JobPage = ({applyForJob}) => {
     const [jobs, setJobs] = useState([]);
     const [isLoading, setIsLoading] = useState({})
 
@@ -32,7 +32,7 @@ const JobPage = () => {
                 searchPhrase="Search for Job" 
                 completeSearch={completeSearch}
             />
-            <JobList jobs = {jobs} showCompany={true}/>
+            <JobList jobs = {jobs} showCompany={true} applyForJob={applyForJob}/>
         </div>
     )
 }

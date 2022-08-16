@@ -1,22 +1,27 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import JoblyApi from "./api.js";
 import JobList from "./JobList.js";
 
-const CompanyDetails = () => {
+const CompanyDetails = ({cantFind, applyForJob}) => {
     const {id} = useParams();
     const [company, setCompany] = useState(null);
     const [isLoading, setIsLoading] = useState({})
+    const navigate = useNavigate()
+
 
     useEffect(() => {
         async function getCompany(id) {
-            let data = await JoblyApi.getCompany(id);
-            setCompany(data)
-
-            setIsLoading(false)
+            try {
+                let data = await JoblyApi.getCompany(id);
+                setCompany(data)
+                setIsLoading(false)
+            } catch (e) {
+                navigate(`${cantFind}`)
+            }
         };
         getCompany(id);
-    }, [id])
+    }, [id, cantFind, navigate])
 
     if (isLoading) return <h1>Loading</h1>;
 
@@ -24,7 +29,7 @@ const CompanyDetails = () => {
         <div>
             <h3>{company.name}</h3>
             <p>{company.description}</p>
-            <JobList jobs={company.jobs} showCompany={false}/>
+            <JobList jobs={company.jobs} showCompany={false} applyForJob={applyForJob}/>
         </div>
     )
 }

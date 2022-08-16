@@ -25,19 +25,22 @@ const JobPage = ({applyForJob}) => {
         setJobs(data);
     }
 
+    const clearSearch = async () => {
+        const jobs = await JoblyApi.getJobs();
+        setJobs(jobs);
+    }
+
     return (
         <div>
             <h3>Jobs Page</h3>
             <SearchForm 
                 searchPhrase="Search for Job" 
                 completeSearch={completeSearch}
+                clearSearch={clearSearch}
             />
-            <JobList jobs = {jobs} showCompany={true} applyForJob={applyForJob}/>
+            <JobList jobs = {jobs} showCompany={true} applyForJob={applyForJob} />
         </div>
     )
 }
 
 export default JobPage;
-
-
-// {jobs.map(job => (<JobCard key = {job.id} job={job}/>))}

@@ -24,13 +24,18 @@ const CompanyPage = () => {
         setCompanies(data);
     }
 
+    const clearSearch = async () => {
+        const companies = await JoblyApi.getCompanies();
+        setCompanies(companies);
+    }
+
     if (isLoading) return <h1>Loading</h1>;
 
 
     return (
         <div>
             <h3>Companies Page</h3>
-            <SearchForm searchPhrase="Search for Company" completeSearch={completeSearch}/>
+            <SearchForm searchPhrase="Search for Company" completeSearch={completeSearch} clearSearch={clearSearch}/>
             {companies.map(company => (<CompanyCard
                 key = {company.handle}
                 company = {company}

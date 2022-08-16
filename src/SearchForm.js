@@ -1,7 +1,8 @@
 import {Paper, InputBase, Button, Box} from '@mui/material';
 import { useState } from 'react';
+import UndoIcon from '@mui/icons-material/Undo';
 
-const SearchForm = ({searchPhrase, completeSearch}) => {
+const SearchForm = ({searchPhrase, completeSearch, clearSearch}) => {
     
     const [formData, setFormData] = useState("");
 
@@ -13,10 +14,14 @@ const SearchForm = ({searchPhrase, completeSearch}) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(formData);
-        completeSearch(formData)
+        completeSearch(formData);
         setFormData("")
     }
 
+    const handleClearSearch = () => {
+        setFormData("");
+        clearSearch();
+    }
 
     return (
             <Box display="flex" justifyContent="center" component="form" onSubmit={handleSubmit}>
@@ -32,7 +37,11 @@ const SearchForm = ({searchPhrase, completeSearch}) => {
                     name="name"
                     inputProps={{ 'aria-label': 'search google maps' }}
                 />
-                <Button variant="contained" type="submit">Search</Button>
+                <Button onClick={handleClearSearch}>
+                    <UndoIcon/>
+                </Button>
+                <Button variant="contained" type="submit" sx={{mr: 0.5}}>Search</Button>
+
                 </Paper>
             </Box>
         

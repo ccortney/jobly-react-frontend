@@ -1,9 +1,166 @@
-const Profile = () => {
-    return (
-        <div>
-            <h3>Profile</h3>
-        </div>
-    )
-}
+import { useState, useContext } from "react";
+import { Grid, TextField, Typography, FormControl, Button, InputLabel, OutlinedInput, InputAdornment, IconButton} from "@mui/material";
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import Visibility from '@mui/icons-material/Visibility';
+import { useNavigate } from "react-router-dom";
+import UserContext from "./UserContext";
+
+const Profile = ({editProfile}) => {
+    const navigate = useNavigate();
+    const user = useContext(UserContext)
+
+    const INITIAL_STATE = {
+        firstName: '',
+        lastName: '',
+        email: '', 
+        password: '',
+        showPassword: false
+    }
+
+    const [formData, setFormData] = useState(INITIAL_STATE);
+
+    const handleChange = (e) => {
+        const {name, value} = e.target;
+        setFormData(formData => ({...formData, [name]: value}))
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        editProfile({
+            firstName: formData.firstName || user.user.firstName,
+            lastName: formData.lastName || user.user.lastName,
+            email: formData.email || user.user.email,
+            password: formData.password || user.user.email
+        })
+        // setFormData({...INITIAL_STATE,         
+        //     firstName: '',
+        //     lastName: '',
+        //     email: '', })
+        navigate('/')
+
+    }
+      
+    const handleClickShowPassword = () => {
+        setFormData({
+        ...formData,
+        showPassword: !formData.showPassword,
+        });
+    };
+      
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+    };
+
+  return (
+      <div>
+
+      
+    <form onSubmit={handleSubmit}>
+        <Typography gutterBottom variant="h5" component="div" sx={{pt: 3}}>
+            Edit Profile
+        </Typography>
+        <Grid container alignItems="center" justifyContent="center" direction="column">
+            <Grid item >
+                <TextField
+                    sx={{m: 1, width: 300}}
+                    id="firstName"
+                    name="firstName"
+                    label="First Name"
+                    type="text"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                />
+            </Grid>
+            <Grid item>
+                <TextField
+                        sx={{m: 1, width: 300}}
+                        id="name-input"
+                        name="lastName"
+                        label="Last Name"
+                        type="text"
+                        value={formData.lasttName}
+                        onChange={handleChange}
+                    />
+            </Grid>
+            {/* <Grid item >
+                <FormControl sx={{ m: 1, width: 300 }} variant="outlined">
+                        <InputLabel htmlFor="password">New Password</InputLabel>
+                        <OutlinedInput
+                        id="password"
+                        type={formData.showPassword ? 'text' : 'password'}
+                        name="password"
+                        value={formData.password}
+                        onChange={handleChange}
+                        endAdornment={
+                            <InputAdornment position="end">
+                            <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={handleClickShowPassword}
+                                onMouseDown={handleMouseDownPassword}
+                                edge="end"
+                            >
+                            {formData.showPassword ? <VisibilityOff /> : <Visibility />}
+                            </IconButton>
+                            </InputAdornment>
+                        }
+                        label="Password"
+                        />
+                </FormControl>   
+            </Grid>         */}
+            <Grid item>
+                <TextField
+                    sx={{m: 1, width: 300}}
+                    id="email"
+                    name="email"
+                    label="Email"
+                    type="text"
+                    value={formData.email}
+                    onChange={handleChange}
+                />
+            </Grid>
+            <Button variant="contained" color="primary" type="submit" sx={{mt: 2}}>
+            Save Changes
+            </Button>
+        </Grid>
+    </form>
+        <form onSubmit={handleSubmit}>
+        <Typography gutterBottom variant="h5" component="div" sx={{pt: 3}}>
+            Edit Password
+        </Typography>
+        <Grid container alignItems="center" justifyContent="center" direction="column">
+
+            <Grid item >
+                <FormControl sx={{ m: 1, width: 300 }} variant="outlined">
+                        <InputLabel htmlFor="password">New Password</InputLabel>
+                        <OutlinedInput
+                        id="password"
+                        type={formData.showPassword ? 'text' : 'password'}
+                        name="password"
+                        value={formData.password}
+                        onChange={handleChange}
+                        endAdornment={
+                            <InputAdornment position="end">
+                            <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={handleClickShowPassword}
+                                onMouseDown={handleMouseDownPassword}
+                                edge="end"
+                            >
+                            {formData.showPassword ? <VisibilityOff /> : <Visibility />}
+                            </IconButton>
+                            </InputAdornment>
+                        }
+                        label="Password"
+                        />
+                </FormControl>   
+            </Grid>        
+            <Button variant="contained" color="primary" type="submit" sx={{mt: 2}}>
+            Save
+            </Button>
+        </Grid>
+    </form>
+    </div>
+  );
+};
 
 export default Profile;

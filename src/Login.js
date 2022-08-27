@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
-import {Typography, Button, Snackbar, Alert } from '@mui/material';
+import { Typography, Button } from '@mui/material';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -10,6 +10,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useState } from 'react';
 import { useNavigate} from 'react-router-dom';
+
 
 /**
  * Login component for Jobly app
@@ -35,14 +36,15 @@ const Login = ({login}) => {
         setFormData(formData => ({...formData, [name]: value}))
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
+        setFailedLogin(false)
         e.preventDefault();
-        let res = login({username: formData.username, password: formData.password})
-        if (!res) {
-            setFailedLogin(true)
-        } else {
+        try {
+            await login({username: formData.username, password: formData.password})
             setFormData(INITIAL_STATE)
             navigate('/')
+        } catch (err) {
+            setFailedLogin(true)
         }
     } 
       
@@ -59,9 +61,10 @@ const Login = ({login}) => {
       
     const failedLoginAlert = failedLogin ? 
         (
-            <Alert severity="error" sx={{ width: '20%'}}>
-              Invalid username/password
-            </Alert>) :
+            <Typography gutterBottom variant="caption" component="div" color="red">
+            Invalid username/password
+            </Typography>
+        ):
           null
 
     return (
@@ -104,8 +107,8 @@ const Login = ({login}) => {
                     </FormControl>
                 </div>  
             </Box>
-            <Button variant="contained" type="submit">Login</Button> 
-            {failedLoginAlert}    
+            {failedLoginAlert}  
+            <Button variant="contained" type="submit">Login</Button>   
         </form>
         
     )

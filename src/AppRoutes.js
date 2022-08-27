@@ -43,8 +43,8 @@ const AppRoutes = ({login, signup, token, editProfile, applyForJob}) => {
                 <Route path="/companies/404" element={<CompanyNotFound/>}/>
                 <Route path="/jobs" element={<JobPage applyForJob={applyForJob}/>}/>
                 <Route path="/profile" element={<Profile editProfile={editProfile}/>}/>
-                <Route path="/login" element={<Login login={login}/>}/>
-                <Route path="/signup" element={<Signup signup={signup}/>}/>
+                <Route path="/login" element={<Navigate to="/"/>}/>
+                <Route path="/signup" element={<Navigate to="/"/>}/>
                 <Route path="*" element={<Navigate to="/"/>}/>
             </Routes>
         )

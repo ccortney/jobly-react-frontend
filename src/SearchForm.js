@@ -22,7 +22,6 @@ const SearchForm = ({searchPhrase, completeSearch, clearSearch}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData);
         completeSearch(formData);
         setFormData("")
     }

@@ -17,8 +17,10 @@ const JobList = ({jobs, showCompany, applyForJob}) => {
                 container 
                 direction="row" 
                 justifyContent="center" 
-                rowSpacing={1} 
-                columnSpacing={{xs: 1, s: 2, md: 3}}>
+                padding = {3}
+                rowSpacing={2}
+                columnSpacing={{xs: 1, s: 2, md: 3}}
+                >
                 {jobs.map(job => (<Grid item xs={6} key={job.id}>
                    <JobCard key = {job.id} job={job} showCompany={showCompany} applyForJob={applyForJob}/> 
                 </Grid>

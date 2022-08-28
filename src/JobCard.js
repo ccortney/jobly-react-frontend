@@ -12,6 +12,7 @@ import UserContext from './UserContext';
  */
 
 const JobCard = ({job, showCompany, applyForJob}) => {
+
     const user = useContext(UserContext);
     const [applied, setApplied] = useState()
 
@@ -33,12 +34,12 @@ const JobCard = ({job, showCompany, applyForJob}) => {
         
 
     return (
-        <Card sx={{ my: 2, mx: 7}} variant="outlined">
-                <Typography variant="h6" >
+        <Card variant="outlined">
+                <Typography variant="h6">
                     {job.title}
                 </Typography>
                 {showCompany &&
-                    <Typography variant="subtitle1" >
+                    <Typography variant="subtitle1">
                         {job.companyName}
                     </Typography>
                 }
@@ -48,6 +49,7 @@ const JobCard = ({job, showCompany, applyForJob}) => {
                 <Typography variant="subtitle2" color="text.secondary">
                     Equity: {job.equity}
                 </Typography>
+
             <Grid container justifyContent = "flex-end">
                 <CardActions >
                     {applyButton}
@@ -59,4 +61,5 @@ const JobCard = ({job, showCompany, applyForJob}) => {
 }
 
 export default JobCard;
+
 
